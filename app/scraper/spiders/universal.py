@@ -1,16 +1,24 @@
 import scrapy
+from datetime import datetime
 from utils.text import remove_blank_lines
 from ..items import ScraperUniversal
 
 
 class ElUniversalSpider(scrapy.Spider):
-    name = 'ElUniversal'
+    name = 'El Universal Feed'
     allowed_domains = [
         'eluniversal.com.mx'
     ]
     start_urls = [
         'https://www.eluniversal.com.mx/minuto-x-minuto'
     ]
+
+    def set_config_values(self, items):
+        items['name'] = 'El Universal'
+        items['domain'] = 'eluniversal.com.mx'
+        items['collection'] = 'Feed'
+        items['createdAt'] = datetime.now()
+        return items
 
     def parse(self, response):
         items = ScraperUniversal()
@@ -21,9 +29,7 @@ class ElUniversalSpider(scrapy.Spider):
         tag_selector = 'h2 > span > a::text'
 
         for element in response.css(news_content_selector):
-            items['name'] = 'El Universal'
-            items['domain'] = 'eluniversal.com.mx'
-            items['collection'] = 'Feed'
+            items = self.set_config_values(items)
             items['hour'] = remove_blank_lines(element.css('::text').get())
             items['title'] = element.css(title_selector).get()
             items['link'] = element.css(link_selector).get()

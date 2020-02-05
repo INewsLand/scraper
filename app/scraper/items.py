@@ -12,6 +12,7 @@ class ScraperUniversal(scrapy.Item):
     name = scrapy.Field()
     domain = scrapy.Field()
     collection = scrapy.Field()
+    createdAt = scrapy.Field()
     hour = scrapy.Field()
     title = scrapy.Field()
     link = scrapy.Field()
