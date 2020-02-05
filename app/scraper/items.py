@@ -8,7 +8,11 @@
 import scrapy
 
 
-class ScraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class ScraperUniversal(scrapy.Item):
+    name = scrapy.Field()
+    domain = scrapy.Field()
+    collection = scrapy.Field()
+    hour = scrapy.Field()
+    title = scrapy.Field()
+    link = scrapy.Field()
+    tag = scrapy.Field()
