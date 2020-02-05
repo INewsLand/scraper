@@ -1,7 +1,7 @@
-FROM rever/nucleus:python
+FROM inewsland/python:3-alpine
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh \
+    apk add --no-cache bash git openssh
 
 RUN apk add build-base
 
@@ -14,7 +14,3 @@ ENV PATH /go/bin:$PATH
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 
 RUN go get github.com/cespare/reflex
-RUN ls /
-COPY reflex.conf /
-
-ENTRYPOINT ["reflex", "-c", "/reflex.conf"]
