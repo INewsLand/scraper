@@ -1,7 +1,7 @@
 import scrapy
 from datetime import datetime
 from utils.text import remove_blank_lines
-from ..items import ScraperUniversal
+from ..items import Feed
 
 
 class ElUniversalSpider(scrapy.Spider):
@@ -21,7 +21,7 @@ class ElUniversalSpider(scrapy.Spider):
         return items
 
     def parse(self, response):
-        items = ScraperUniversal()
+        items = Feed()
 
         news_content_selector = 'div.view-content>div'
         title_selector = 'h2 > a::text'
@@ -36,6 +36,6 @@ class ElUniversalSpider(scrapy.Spider):
             items['tag'] = element.css(tag_selector).get()
             yield items
 
-        # next_page_selector = 'li.pager-next > a'
-        # for page in response.css(next_page_selector):
-        #     yield response.follow(page, callback=self.parse)
+        next_page_selector = 'li.pager-next > a'
+        for page in response.css(next_page_selector):
+            yield response.follow(page, callback=self.parse)

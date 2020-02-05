@@ -7,8 +7,7 @@
 
 import scrapy
 
-
-class ScraperUniversal(scrapy.Item):
+class Feed(scrapy.Item):
     name = scrapy.Field()
     domain = scrapy.Field()
     collection = scrapy.Field()
