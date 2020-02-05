@@ -4,7 +4,7 @@ from utils.text import remove_blank_lines
 from ..items import Feed
 
 
-class ElUniversalSpider(scrapy.Spider):
+class ElUniversalFeedSpider(scrapy.Spider):
     name = 'El Universal Feed'
     allowed_domains = [
         'eluniversal.com.mx'
