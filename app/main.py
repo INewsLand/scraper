@@ -1,9 +1,16 @@
-import scrapy
+from scrapy.crawler import CrawlerProcess
+from scraper.spiders.universal_feed import ElUniversalFeedSpider
+from scraper.settings import settings
 
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
-    start_urls = ['https://blog.scrapinghub.com']
+def main():
+    spider_name = 'ElUniversalFeed'
+    spider_instance = None
+    if spider_name == 'ElUniversalFeed':
+        spider_instance = ElUniversalFeedSpider
 
-    def parse(self, response):
-        for title in response.css('.post-header>h2'):
-            yield {'title': title.css('a ::text').get()}
+    process = CrawlerProcess(settings)
+    process.crawl(spider_instance)
+    process.start()
+
+if __name__ == "__main__":
+    main()

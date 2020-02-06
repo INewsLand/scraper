@@ -7,10 +7,11 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ../app:/app
-    command: python /app/main.py
+      - ../reflex.conf:/app/reflex.conf
+    command: reflex -c /app/reflex.conf
     environment:
-      - MONGO_API_URL=
-      - MONGO_API_NAME=
+      - SCRAPER_DATABASE_URL=mongodb://localhost:27017/news_scraper
+      - SCRAPER_DATABASE_NAME=news_scraper
       - PYTHONPATH=/usr/local/lib/python3.6:/app/dependencies
       - ENVIRONMENT=dev
     working_dir: /app
