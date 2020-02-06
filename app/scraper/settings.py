@@ -12,6 +12,6 @@ settings = {
     'CONCURRENT_REQUESTS_PER_IP': 16,
     'COOKIES_ENABLED': True,
     'ITEM_PIPELINES': {
-    'scraper.pipelines.MongoPipeline': 100,
+        'scraper.pipelines.MongoPipeline': 100,
     },
 }
