@@ -8,6 +8,8 @@ services:
     volumes:
       - ../app:/app
       - ../reflex.conf:/app/reflex.conf
+    ports:
+      - "5000:5000"
     command: reflex -c /app/reflex.conf
     environment:
       - SCRAPER_DATABASE_URL=mongodb://localhost:27017/news_scraper
@@ -15,4 +17,3 @@ services:
       - PYTHONPATH=/usr/local/lib/python3.6:/app/dependencies
       - ENVIRONMENT=dev
     working_dir: /app
-    network_mode: host
