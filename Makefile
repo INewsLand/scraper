@@ -12,3 +12,5 @@ install:
 	inewsland/python:3-alpine pip install -r /app/requirements.txt -t /app/dependencies
 freeze:
 	pip freeze > app/requirements.txt
+sync:
+	pip install -r app/requirements.txt

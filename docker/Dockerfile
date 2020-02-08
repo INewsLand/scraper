@@ -14,3 +14,5 @@ ENV PATH /go/bin:$PATH
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 
 RUN go get github.com/cespare/reflex
+
+EXPOSE 8000
