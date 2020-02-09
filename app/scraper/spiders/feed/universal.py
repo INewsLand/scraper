@@ -1,7 +1,7 @@
 import scrapy
 from datetime import datetime
 from utils.text import remove_blank_lines
-from ..items import Feed
+from scraper.items import Feed
 
 
 class ElUniversalFeedSpider(scrapy.Spider):

@@ -140,3 +140,6 @@ dependencies
 # Personal notes
 
 info.txt
+
+# Docker volumes
+db_data

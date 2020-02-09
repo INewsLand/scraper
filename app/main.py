@@ -1,10 +1,10 @@
 from scrapy.crawler import CrawlerProcess
-from scraper.spiders.feed.universal import ElUniversalFeedSpider
+from scraper.spiders.news.universal import ElUniversalNewsSpider
 from scraper.settings import settings
 
 def main():
     process = CrawlerProcess(settings)
-    process.crawl(ElUniversalFeedSpider)
+    process.crawl(ElUniversalNewsSpider)
     process.start()
 
 if __name__ == "__main__":
