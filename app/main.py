@@ -1,11 +1,11 @@
-from flask import Flask, request, escape
+from scrapy.crawler import CrawlerProcess
+from scraper.spiders.feed.universal import ElUniversalFeedSpider
+from scraper.settings import settings
 
-app = Flask(__name__)
-
-@app.route('/run')
-def run():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
+def main():
+    process = CrawlerProcess(settings)
+    process.crawl(ElUniversalFeedSpider)
+    process.start()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    main()
