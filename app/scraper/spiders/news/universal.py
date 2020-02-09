@@ -2,7 +2,7 @@ import scrapy
 from datetime import datetime
 from utils.text import remove_blank_lines
 from utils.text import unidecode_data
-from ..items import News
+from scraper.items import News
 
 
 class ElUniversalNewsSpider(scrapy.Spider):

@@ -1,7 +1,7 @@
 dev:
 	docker-compose -f docker/docker-compose.yml up
-rebuild:
-	docker-compose -f docker/docker-compose.yml down --rmi all && \
+restart:
+	docker-compose -f docker/docker-compose.yml down --rmi all --remove-orphans && \
 	docker-compose -f docker/docker-compose.yml up
 remove:
 	docker-compose -f docker/docker-compose.yml down --rmi all
