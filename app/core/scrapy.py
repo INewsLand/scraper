@@ -1,7 +1,7 @@
 import requests
-from config.const import make_url
-from config.const import scheduler_payload
-from config.const import cancel_payload
+from config.builder import make_url
+from config.builder import scheduler_payload
+from config.builder import cancel_payload
 
 def get_deamon():
     call = requests.get(make_url('daemonstatus.json'))

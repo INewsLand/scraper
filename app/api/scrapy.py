@@ -7,7 +7,7 @@ from core.scrapy import get_jobs
 from core.scrapy import set_scheduler
 from core.scrapy import set_cancel
 
-def set_all(app):
+def scrapy_router(app):
 
     @app.route('/deamon', methods=['GET'])
     def deamon():
