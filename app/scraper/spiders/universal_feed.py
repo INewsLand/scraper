@@ -5,7 +5,7 @@ from scraper.items import Feed
 
 
 class ElUniversalFeedSpider(scrapy.Spider):
-    name = 'El Universal Feed'
+    name = 'ElUniversalFeed'
     allowed_domains = [
         'eluniversal.com.mx'
     ]
