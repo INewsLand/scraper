@@ -27,6 +27,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 twist.pid
+app/setup.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -135,6 +136,7 @@ dmypy.json
 
 # IDE's local dependencies
 dependencies
+
 
 # Docker volumes
 db_data
