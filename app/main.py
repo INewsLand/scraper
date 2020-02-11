@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from api.spiders import get_deamon
 from api.spiders import get_projects
 from api.spiders import get_spiders
+from api.spiders import set_scheduler
 
 app = Flask(__name__)
 
@@ -24,6 +25,17 @@ def projects():
 @app.route('/spiders', methods=['GET'])
 def spiders():
     status, payload = get_spiders()
+    return {
+        'status': status,
+        'payload': payload
+    }
+
+@app.route('/schedule', methods=['POST'])
+def schedule():
+    json = request.get_json()
+    spider = json.get('spider', '')
+    link = json.get('link', '')
+    status, payload = set_scheduler(spider, link)
     return {
         'status': status,
         'payload': payload
