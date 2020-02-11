@@ -1,8 +1,8 @@
 dev:
 	docker-compose -f docker/docker-compose.yml up
 restart:
-	docker-compose -f docker/docker-compose.yml down --rmi all --remove-orphans && \
-	docker-compose -f docker/docker-compose.yml up
+	docker-compose -f docker/docker-compose.yml down --remove-orphans && \
+	docker-compose -f docker/docker-compose.yml up --build
 remove:
 	docker-compose -f docker/docker-compose.yml down --rmi all
 install:
