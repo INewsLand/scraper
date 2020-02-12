@@ -33,12 +33,30 @@ def scrapy_router(app):
             'payload': payload
         }
 
+    @app.route('/jobs', methods=['GET'])
+    def jobs():
+        status, payload = get_jobs()
+        return {
+            'status': status,
+            'payload': payload
+        }
+
     @app.route('/schedule', methods=['POST'])
     def schedule():
         json = request.get_json()
         spider = json.get('spider', '')
         link = json.get('link', '')
         status, payload = set_scheduler(spider, link)
+        return {
+            'status': status,
+            'payload': payload
+        }
+
+    @app.route('/cancel', methods=['POST'])
+    def cancel():
+        json = request.get_json()
+        job = json.get('job', '')
+        status, payload = set_cancel(job)
         return {
             'status': status,
             'payload': payload
