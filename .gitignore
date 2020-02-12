@@ -26,6 +26,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+twist.pid
+app/setup.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -129,17 +131,17 @@ dmypy.json
 .pyre/
 
 # IDE's
-
 .vscode
 .idea
 
 # IDE's local dependencies
-
 dependencies
 
-# Personal notes
-
-info.txt
 
 # Docker volumes
 db_data
+
+# Db objects
+dbs
+*.db
+*.pid

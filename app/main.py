@@ -1,11 +1,9 @@
-from scrapy.crawler import CrawlerProcess
-from scraper.spiders.news.universal import ElUniversalNewsSpider
-from scraper.settings import settings
+from flask import Flask, request, jsonify
+from api.scrapy import scrapy_router
 
-def main():
-    process = CrawlerProcess(settings)
-    process.crawl(ElUniversalNewsSpider)
-    process.start()
+app = Flask(__name__)
+
+scrapy_router(app)
 
 if __name__ == "__main__":
-    main()
+    app.run('0.0.0.0', 5000, debug=True)

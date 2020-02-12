@@ -2,15 +2,17 @@ version: "3"
 
 services:
   scraper:
+    container_name: scraper_app
     build:
       context: ../
       dockerfile: docker/Dockerfile
     volumes:
       - ../app:/app
-      - ../reflex.conf:/app/reflex.conf
+      - ../reflex.conf:/reflex.conf
+      - ../scripts/dev.sh:/dev.sh
     ports:
       - "5000:5000"
-    command: reflex -c /app/reflex.conf
+    entrypoint: /dev.sh
     environment:
       - SCRAPER_DATABASE_URL=mongodb://scraper_db:27017/news_scraper
       - SCRAPER_DATABASE_NAME=news_scraper

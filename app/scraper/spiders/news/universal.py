@@ -1,18 +1,19 @@
 import scrapy
 from datetime import datetime
-from utils.text import remove_blank_lines
+from utils.text import normalize_titles
 from utils.text import unidecode_data
 from scraper.items import News
 
 
 class ElUniversalNewsSpider(scrapy.Spider):
-    name = 'El Universal News'
+    name = 'ElUniversalNews'
     allowed_domains = [
         'eluniversal.com.mx'
     ]
-    start_urls = [
-        'https://www.eluniversal.com.mx/cartera/twitter-se-dispara-en-wall-street-tras-anunciar-aumento-de-usuarios'
-    ]
+
+    def __init__(self, link=None, *args, **kwargs):
+        super(ElUniversalNewsSpider, self).__init__(*args, **kwargs)
+        self.start_urls = [link]
 
     def set_config_values(self, items):
         items['name'] = 'El Universal'
@@ -36,8 +37,8 @@ class ElUniversalNewsSpider(scrapy.Spider):
 
         items = self.set_config_values(items)
         items['link'] = str(response.request.url)
-        items['title'] = response.css(title_selector).get()
-        items['subTitle'] = response.css(subTitle_selector).get()
+        items['title'] = normalize_titles(response.css(title_selector).get())
+        items['subTitle'] = normalize_titles(response.css(subTitle_selector).get())
         items['date'] = response.css(date_selector).get()
         items['hour'] = response.css(hour_selector).get()
         items['author'] = response.css(author_selector).get()

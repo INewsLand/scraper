@@ -1,11 +1,12 @@
 import scrapy
 from datetime import datetime
 from utils.text import remove_blank_lines
+from utils.text import normalize_titles
 from scraper.items import Feed
 
 
 class ElUniversalFeedSpider(scrapy.Spider):
-    name = 'El Universal Feed'
+    name = 'ElUniversalFeed'
     allowed_domains = [
         'eluniversal.com.mx'
     ]
@@ -31,7 +32,7 @@ class ElUniversalFeedSpider(scrapy.Spider):
         for element in response.css(news_content_selector):
             items = self.set_config_values(items)
             items['hour'] = remove_blank_lines(element.css('::text').get())
-            items['title'] = element.css(title_selector).get()
+            items['title'] = normalize_titles(element.css(title_selector).get())
             items['link'] = element.css(link_selector).get()
             items['tag'] = element.css(tag_selector).get()
             yield items
