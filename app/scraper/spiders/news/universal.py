@@ -6,7 +6,7 @@ from scraper.items import News
 
 
 class ElUniversalNewsSpider(scrapy.Spider):
-    name = 'ElUniversalNews'
+    name = 'ElUniversal:News'
     allowed_domains = [
         'eluniversal.com.mx'
     ]
