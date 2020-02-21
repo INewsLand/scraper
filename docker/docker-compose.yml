@@ -8,16 +8,14 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ../app:/app
-      - ../reflex.conf:/reflex.conf
-      - ../scripts/dev.sh:/dev.sh
     ports:
       - "5000:5000"
-    entrypoint: /dev.sh
     environment:
       - SCRAPER_DATABASE_URL=mongodb://scraper_db:27017/news_scraper
       - SCRAPER_DATABASE_NAME=news_scraper
       - PYTHONPATH=/usr/local/lib/python3.6:/app/dependencies
       - ENVIRONMENT=dev
+    entrypoint: tail -f /dev/null
     working_dir: /app
     depends_on:
       - scraper_db
