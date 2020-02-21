@@ -1,5 +1,5 @@
-dev:
-	docker-compose -f docker/docker-compose.yml up
+start:
+	docker-compose -f docker/docker-compose.yml up&
 restart:
 	docker-compose -f docker/docker-compose.yml down --remove-orphans && \
 	docker-compose -f docker/docker-compose.yml up --build
@@ -16,3 +16,13 @@ sync:
 	pip install -r app/requirements.txt
 build:
 	docker build -t scrapers:latest .
+scrapy:
+	docker container exec -it scraper_app bash -c scrapy
+crawl:
+	docker container exec -it scraper_app bash -c "scrapy crawl ${spider}"
+check:
+	docker container exec -it scraper_app bash -c "scrapy check ${spider}"
+shell:
+	docker container exec -it scraper_app bash -c "scrapy shell"
+genspider:
+	docker container exec -it scraper_app bash -c "scrapy genspider ${spider}"
