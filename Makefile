@@ -14,3 +14,5 @@ freeze:
 	pip freeze > app/requirements.txt
 sync:
 	pip install -r app/requirements.txt
+build:
+	docker build -t scrapers:latest .

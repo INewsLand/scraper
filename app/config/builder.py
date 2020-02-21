@@ -14,7 +14,7 @@ def scheduler_payload(spider, link=None):
         payload['link'] = link
     return payload
 
-def cancel_payload(spider, link):
+def cancel_payload(job):
     payload = {
         'project': PROJECT,
         'job': job
