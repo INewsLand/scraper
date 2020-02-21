@@ -1,5 +1,7 @@
 start:
-	docker-compose -f docker/docker-compose.yml up&
+	docker-compose -f docker/docker-compose.yml up -d
+down:
+	docker-compose -f docker/docker-compose.yml down
 restart:
 	docker-compose -f docker/docker-compose.yml down --remove-orphans && \
 	docker-compose -f docker/docker-compose.yml up --build
@@ -26,3 +28,5 @@ shell:
 	docker container exec -it scraper_app bash -c "scrapy shell"
 genspider:
 	docker container exec -it scraper_app bash -c "scrapy genspider ${spider}"
+list:
+	docker container exec -it scraper_app bash -c "scrapy list"
