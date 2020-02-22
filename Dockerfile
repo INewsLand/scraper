@@ -16,6 +16,4 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-COPY scripts/start.sh .
-
-ENTRYPOINT ["./start.sh"]
+RUN scrapyd-deploy news
