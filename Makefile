@@ -20,8 +20,10 @@ build:
 	docker build -t scrapers:latest .
 scrapy:
 	docker container exec -it scraper_app bash -c scrapy
-crawl:
+feed:
 	docker container exec -it scraper_app bash -c "scrapy crawl ${spider}"
+news:
+	docker container exec -it scraper_app bash -c "scrapy crawl ${spider} -a link=${link}"
 check:
 	docker container exec -it scraper_app bash -c "scrapy check ${spider}"
 shell:
