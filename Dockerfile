@@ -1,9 +1,7 @@
 FROM inewsland/python:3-alpine
 
-EXPOSE 5000
-
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+    apk add --no-cache bash git openssh curl
 
 RUN apk add build-base
 
@@ -16,4 +14,6 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-RUN scrapyd-deploy news
+COPY script /script
+
+CMD [ "/script/start.sh" ]
