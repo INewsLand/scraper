@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/alpine
     steps:
-      run: echo "Hello world!"
+      - run: echo "Hello world!"
 
 workflows:
   version: 2
