@@ -13,11 +13,13 @@ jobs:
       - checkout
       - run: pip install -r app/requirements.txt
       - run: cd app && ../script/start.sh
+
 workflows:
   version: 2
-    jobs:
-      - build:
-        filters:
-          branches:
-            only:
-              - master
+    build:
+      jobs:
+        - build:
+          filters:
+            branches:
+              only:
+                - master
