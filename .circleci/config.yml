@@ -23,3 +23,13 @@ workflows:
           branches:
             only:
               - master
+
+workflows:
+  version: 2
+  deploying:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
