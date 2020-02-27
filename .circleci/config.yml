@@ -2,6 +2,9 @@ version: 2
 
 jobs:
   build:
+    branches:
+      only:
+        - master
     docker:
       - image: inewsland/python:3-alpine
     steps:
@@ -15,6 +18,5 @@ jobs:
       - run: cd app && ../script/start.sh
 workflows:
   version: 2
-  build:
     jobs:
       - build
