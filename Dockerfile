@@ -1,10 +1,5 @@
 FROM inewsland/python:3-alpine
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh curl
-
-RUN apk add build-base
-
 RUN pip install scrapy
 RUN pip install scrapyd
 RUN pip install git+https://github.com/scrapy/scrapyd-client.git
