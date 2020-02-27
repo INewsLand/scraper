@@ -3,9 +3,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/alpine
+      - image: cimg/base:2020.01
     steps:
       - run: echo "Hello world!"
+      - checkout
 
 workflows:
   version: 2
