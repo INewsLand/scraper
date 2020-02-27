@@ -12,7 +12,7 @@ jobs:
       - run: pip install git+https://github.com/scrapy/scrapyd-client.git
       - checkout
       - run: pip install -r app/requirements.txt
-      - run: script/start.sh
+      - run: cd app && script/start.sh
 workflows:
   version: 2
   build:
