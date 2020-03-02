@@ -28,17 +28,15 @@ class ElFinancieroFeedSpider(scrapy.Spider):
 
     def get_tag(self,url=""):
         url = url.split('\x2f')
-        #print("URL _ " , url)
         return url[1]
 
     def parse(self, response):
         items = Feed()
-
         news_content_selector = 'div.feed'
         title_selector = 'div.no-padding-left > p.head::text'
         link_selector = 'a::attr(href)'
         tag_selector = link_selector
-
+        
         for element in response.css(news_content_selector):
             items = self.set_config_values(items)
             items['hour'] = remove_blank_lines(element.css('::text').get())
@@ -46,8 +44,6 @@ class ElFinancieroFeedSpider(scrapy.Spider):
             items['link'] = element.css(link_selector).get()
             items['tag'] = self.get_tag( element.css(tag_selector).get())
             yield items
-
-            
 
         next_page_selector = 'button.load-more'
         for page in response.css(next_page_selector):

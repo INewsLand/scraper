@@ -22,12 +22,10 @@ class SDPNoticiasFeedSpider(scrapy.Spider):
         'https://www.sdpnoticias.com/sorprendente'
     ]
 
-
     def get_tag(self,url=""):
         url = url.split('\x2f')
         print("URL _ " , url)
         return url[1]
-
 
     def set_config_values(self, items):
         items['name'] = 'SDP Noticias'
@@ -38,19 +36,15 @@ class SDPNoticiasFeedSpider(scrapy.Spider):
 
     def get_tag(self,url=""):
         url = url.split('\x2f')
-        #print("URL _ " , url)
         return url[1]
 
 
     def parse(self, response):
         items = Feed()
-
         news_content_selector = 'article.articleModule' 
         title_selector = 'h2.title::text'
         link_selector = 'a.page-link::attr(href)'
         tag_selector = link_selector
-
-      
         next_page_selector = 'li.see-more>a::attr("href")'
         
         for element in response.css(news_content_selector): 
@@ -66,8 +60,6 @@ class SDPNoticiasFeedSpider(scrapy.Spider):
             items['tag'] = self.get_tag( element.css(tag_selector).get())
             yield items
  
-        
-   
         for page in response.css(next_page_selector):
             yield response.follow(page, callback=self.parse)
         

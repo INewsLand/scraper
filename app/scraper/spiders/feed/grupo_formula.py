@@ -55,10 +55,5 @@ class GrupoFormulaFeedSpider(scrapy.Spider):
             items['tag'] = self.get_category_from_class_attr(element.css(tag_selector).get())
             yield items
 
-        print("SIGUIENTE PAGUINA ---> ", next_page)
         if next_page is not None:
             yield response.follow(next_page, self.parse)
-        """
-        for page in response.css(next_page_selector):
-            yield response.follow(page, callback=self.parse)
-        """

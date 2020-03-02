@@ -32,7 +32,6 @@ class RadioFormulaNewsSpider(scrapy.Spider):
 
     def parse(self, response):
         items = News()
-        #item_selector = 'div.content'
         item_selector = 'div.background-overlay > div.tie-container > div.tie-wrapper >  div.content'
         title_selector = 'h1.post-title::text'
         subTitle_selector = 'h2.entry-sub-title::text'
@@ -58,10 +57,10 @@ class RadioFormulaNewsSpider(scrapy.Spider):
         if len(data) == 0  :
             text_selector_all = 'article#the-post > div.entry-content > p '
             data = response.css(text_selector_all).getall() 
-        x = ""
+        cleaned_text = ""
         for e in data :
-            x+=no_tags( remove_blank_lines( unidecode_data(e)) )
+            cleaned_text+=no_tags( remove_blank_lines( unidecode_data(e)) )
 
-        items['text'] = x
+        items['text'] = cleaned_text
         
         yield items
