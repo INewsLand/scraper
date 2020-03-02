@@ -57,7 +57,3 @@ class GrupoFormulaFeedSpider(scrapy.Spider):
 
         if next_page is not None:
             yield response.follow(next_page, self.parse)
-        """
-        for page in response.css(next_page_selector):
-            yield response.follow(page, callback=self.parse)
-        """
