@@ -17,7 +17,7 @@ freeze:
 sync:
 	pip install -r app/requirements.txt
 build:
-	docker build -t scrapers:latest .
+	docker build -t inewsland/scraper:latest .
 scrapy:
 	docker container exec -it scraper_app bash -c scrapy
 feed:
