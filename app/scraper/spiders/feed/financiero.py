@@ -28,7 +28,7 @@ class ElFinancieroFeedSpider(scrapy.Spider):
 
     def get_tag(self,url=""):
         url = url.split('\x2f')
-        print("URL _ " , url)
+        #print("URL _ " , url)
         return url[1]
 
     def parse(self, response):
