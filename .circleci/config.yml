@@ -1,0 +1,25 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: inewsland/python:3-alpine
+    steps:
+      - run: apk update && apk upgrade && apk add --no-cache bash git openssh curl
+      - run: apk add build-base
+      - run: pip install scrapy
+      - run: pip install scrapyd
+      - run: pip install git+https://github.com/scrapy/scrapyd-client.git
+      - checkout
+      - run: pip install -r app/requirements.txt
+      - run: cd app && ../script/start.sh
+
+workflows:
+  version: 2
+  deploying:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
